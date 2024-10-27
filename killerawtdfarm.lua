@@ -1,22 +1,17 @@
+repeat wait() until game:IsLoaded()
+wait(5)
 getgenv().AutoPlaceUnit = true
 getgenv().AutoSellRedHair = true
 getgenv().AutoSkip = true
 getgenv().AutoFirstSkip = true
-getgenv().AutoTPToUnit = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgradex2 = true
 
+local x = game.Players.LocalPlayer.Character.Torso.Position.x
+local y = game.Players.LocalPlayer.Character.Torso.Position.y
+local z = game.Players.LocalPlayer.Character.Torso.Position.z 
+
 if game.PlaceId == 6593190090 then
-
-    local x = game.Players.LocalPlayer.Character.Torso.Position.x
-    local y = game.Players.LocalPlayer.Character.Torso.Position.y
-    local z = game.Players.LocalPlayer.Character.Torso.Position.z 
-
-    spawn(function()
-        if getgenv().AutoTPToUnit == true then
-            game.Players.LocalPlayer.Character:MoveTo(Vector3.new(x, y, z))
-        end
-    end)
 
     spawn(function()
         if getgenv().AutoSkip == true then 
@@ -45,7 +40,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Killer [Sister]",
+                [1] = "Killer",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
@@ -63,11 +58,15 @@ if game.PlaceId == 6593190090 then
         if getgenv().AutoUpgradex2 == true then
             wait(5)
             local args = {
-                [1] = workspace.Units.Killer["Sister"]
+                [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
-            wait(5)
+            wait(10)
+
+            local args = {
+                [1] = workspace.Units.Killer
+            }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
     end)
