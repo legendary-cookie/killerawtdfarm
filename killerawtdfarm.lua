@@ -62,11 +62,8 @@ if game.PlaceId == 6593190090 then
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
-            wait(10)
+            wait(5)
 
-            local args = {
-                [1] = workspace.Units.Killer
-            }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
     end)
