@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(5)
+
 getgenv().AutoPlaceUnit = true
 getgenv().AutoSkip = false
 getgenv().AutoFirstSkip = true
