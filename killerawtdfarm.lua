@@ -56,13 +56,13 @@ if game.PlaceId == 6593190090 then
 
     spawn(function()
         if getgenv().AutoUpgrade2x == true then
-            wait(10)
+            wait(12)
             local args = {
                 [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
-            wait(5)
+            wait(7)
 
             local args = {
                 [1] = workspace.Units.Killer
