@@ -16,7 +16,10 @@ local settings = {
 
 -- Get current coordinates for unit placement
 local player = game.Players.LocalPlayer
-local x, y, z = player.Character.Torso.Position.x, player.Character.Torso.Position.y, player.Character.Torso.Position.z
+local x = game.Players.LocalPlayer.Character.Torso.Position.x
+local y = game.Players.LocalPlayer.Character.Torso.Position.y
+local z = game.Players.LocalPlayer.Character.Torso.Position.z
+
 
 -- Function to handle UI clicks
 local function clickUI(guiPath)
