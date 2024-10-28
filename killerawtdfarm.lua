@@ -1,4 +1,5 @@
 repeat wait() until game:IsLoaded()
+wait(3)
 
 --auto tp, replay and play
 getgenv().AutoPlaceUnit = true
@@ -126,7 +127,7 @@ if game.PlaceId == 6593190090 then
                     
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.ATK)
             wait(1)
-            end
+        end
     end)
 
     --auto replay
