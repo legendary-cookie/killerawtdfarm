@@ -1,5 +1,4 @@
 repeat wait() until game:IsLoaded()
-wait(2)
 
 --auto tp, replay and play
 getgenv().AutoPlaceUnit = true
@@ -9,6 +8,9 @@ getgenv().AutoUpgrade2x = true
 getgenv().AutoUpgrade = false
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
+getgenv().AutoBuyFood = true
+getgenv().AutoFeed = true
+getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
@@ -70,6 +72,63 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
+    --auto Buy Food
+    spawn(function()
+        while getgenv().AutoBuyFood == true do
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+            
+                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+            
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            wait(15)
+        end
+    end)
+
+    --auto Feed
+    spawn(function()
+        while getgenv().AutoFeed == true do
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+                
+                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
+                
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+                
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
+            wait(3)
+        end
+    end)
+
+    --auto bUff picker
+    spawn(function()
+        while getgenv().BuffPicker == true do
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+                    
+                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.ATK) --ATK can change to RNG, ElemntPower or Tamer
+                    
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+                    
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.ATK)
+            wait(1)
+            end
+    end)
+
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
@@ -85,7 +144,7 @@ if game.PlaceId == 6593190090 then
             end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
-            wait(1)
+            wait(2)
         end
     end)
 
