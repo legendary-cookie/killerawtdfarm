@@ -1,7 +1,7 @@
 repeat wait() until game:IsLoaded()
 wait(5)
 getgenv().AutoPlaceUnit = true
-getgenv().AutoSkip = false
+getgenv().AutoSkip = true
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgradeP1 = true
@@ -60,7 +60,7 @@ if game.PlaceId == 6593190090 then
 
     spawn(function()
         if getgenv().AutoUpgradeP1 == true then
-            wait(4)
+            wait(5)
             local args = {
                 [1] = workspace.Units.Killer
             }
@@ -70,7 +70,7 @@ if game.PlaceId == 6593190090 then
 
         spawn(function()
         if getgenv().AutoUpgradeP2 == true then
-            wait(7)
+            wait(5)
             local args = {
                 [1] = workspace.Units.Killer
             }
