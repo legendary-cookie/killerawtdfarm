@@ -76,6 +76,7 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         while getgenv().AutoBuyFood == true do
+            wait(15)
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -88,7 +89,6 @@ if game.PlaceId == 6593190090 then
             end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
-            wait(15)
         end
     end)
 
