@@ -22,19 +22,16 @@ if game.PlaceId == 6558526079 then
     
     spawn(function()
         if getgenv().AutoJoinGame == true then 
-            local args ={
+            local args = {
                 [1] = {
                     ["StageSelect"] = "Evil Pink Dungeon",
-                    ["image"] = "rbxassetid://15289588795",
+                    ["Image"] = "rbxassetid://15289588795",
                     ["FriendOnly"] = true,
                     ["Difficult"] = "Nightmare"
                 }
             }
-
+            
             game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
-
-            wait(1)
-            click(game:GetService("StarterGui").InRoomUi.RoomUI.QuickStart)
         end
     end)
 
