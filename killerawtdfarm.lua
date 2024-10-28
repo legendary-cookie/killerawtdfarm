@@ -15,10 +15,8 @@ local settings = {
 }
 
 -- Get current coordinates for unit placement
-local x = game.Players.LocalPlayer.Character.Torso.Position.x
-local y = game.Players.LocalPlayer.Character.Torso.Position.y
-local z = game.Players.LocalPlayer.Character.Torso.Position.z
-
+local player = game.Players.LocalPlayer
+local x, y, z = player.Character.Torso.Position.x, player.Character.Torso.Position.y, player.Character.Torso.Position.z
 
 -- Function to handle UI clicks
 local function clickUI(guiPath)
@@ -102,15 +100,10 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if settings.AutoPlaceUnit then
             local args = {
-                [1] = "Killer",
-                [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
-                [3] = 1,
-                [4] = {
-                    [1] = "1",
-                    [2] = "1",
-                    [3] = "1",
-                    [4] = "1"
-                }
+                "Killer",
+                CFrame.new(x, y, z) * CFrame.Angles(0, 0, 0),
+                1,
+                { "1", "1", "1", "1" }
             }
             game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
         end
