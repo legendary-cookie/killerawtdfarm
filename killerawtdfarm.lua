@@ -32,6 +32,9 @@ if game.PlaceId == 6558526079 then
             }
             
             game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
+            
+            wait(2)
+            click(game:GetService("StarterGui").InRoomUi.RoomUI.QuickStart)
         end
     end)
 
