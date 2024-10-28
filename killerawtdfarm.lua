@@ -34,7 +34,7 @@ if game.PlaceId == 6558526079 then
             game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
 
             wait(1)
-            click(game:GetService("StarterGui").EndUI.UI.Replay)
+            click(game:GetService("StarterGui").InRoomUi.RoomUI.QuickStart)
         end
     end)
 
