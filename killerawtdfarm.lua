@@ -15,31 +15,6 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-local click = loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/realclick-obf.lua"))()
-
-if game.PlaceId == 6558526079 then
-
-    
-    spawn(function()
-        if getgenv().AutoJoinGame == true then 
-            local args = {
-                [1] = {
-                    ["StageSelect"] = "Evil Pink Dungeon",
-                    ["Image"] = "rbxassetid://15289588795",
-                    ["FriendOnly"] = true,
-                    ["Difficult"] = "Nightmare"
-                }
-            }
-            
-            game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
-            
-            wait(2)
-            click(game:GetService("StarterGui").InRoomUi.RoomUI.QuickStart)
-        end
-    end)
-
-end
-
 
 if game.PlaceId == 6593190090 then
 
@@ -68,13 +43,6 @@ if game.PlaceId == 6593190090 then
     end)
 
     spawn(function()
-        while getgenv().AutoReplay == true do
-            click(game:GetService("StarterGui").EndUI.UI.Replay)
-            wait(1)
-        end
-    end)
-
-    spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
                 [1] = "Killer",
@@ -93,7 +61,7 @@ if game.PlaceId == 6593190090 then
 
     spawn(function()
         if getgenv().AutoUpgradeP1 == true then
-            wait(5)
+            wait(4)
             local args = {
                 [1] = workspace.Units.Killer
             }
@@ -103,7 +71,7 @@ if game.PlaceId == 6593190090 then
 
         spawn(function()
         if getgenv().AutoUpgradeP2 == true then
-            wait(5)
+            wait(7)
             local args = {
                 [1] = workspace.Units.Killer
             }
