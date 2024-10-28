@@ -137,14 +137,14 @@ if game.PlaceId == 6593190090 then
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
             
-                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplaySelect)
+                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
             
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
             end
             
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplaySelect)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
             wait(2)
         end
     end)
