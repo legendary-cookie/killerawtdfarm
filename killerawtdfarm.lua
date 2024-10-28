@@ -1,8 +1,7 @@
 repeat wait() until game:IsLoaded()
 wait(5)
 getgenv().AutoPlaceUnit = true
-getgenv().AutoSellRedHair = true
-getgenv().AutoSkip = true
+getgenv().AutoSkip = false
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgradeP1 = true
