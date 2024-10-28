@@ -6,9 +6,6 @@ getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgradeP1 = true
 getgenv().AutoUpgradeP2 = true
-getgenv().AutoUpgrade = false
-getgenv().AutoReplay = true
-getgenv().AutoJoinGame = true
 
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
@@ -70,7 +67,7 @@ if game.PlaceId == 6593190090 then
 
         spawn(function()
         if getgenv().AutoUpgradeP2 == true then
-            wait(5)
+            wait(7)
             local args = {
                 [1] = workspace.Units.Killer
             }
