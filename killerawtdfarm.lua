@@ -4,8 +4,7 @@ getgenv().AutoPlaceUnit = true
 getgenv().AutoSkip = false
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
-getgenv().AutoUpgradeP1 = true
-getgenv().AutoUpgradeP2 = true
+getgenv().AutoUpgrade2x = true
 
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
@@ -56,18 +55,15 @@ if game.PlaceId == 6593190090 then
     end)
 
     spawn(function()
-        if getgenv().AutoUpgradeP1 == true then
-            wait(5)
+        if getgenv().AutoUpgrade2x == true then
+            wait(4)
             local args = {
                 [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-        end
-    end)
 
-        spawn(function()
-        if getgenv().AutoUpgradeP2 == true then
-            wait(7)
+            wait(4)
+
             local args = {
                 [1] = workspace.Units.Killer
             }
