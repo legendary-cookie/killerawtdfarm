@@ -1,5 +1,4 @@
 repeat wait() until game:IsLoaded()
-wait(3)
 
 --auto tp, replay and play
 getgenv().AutoPlaceUnit = true
@@ -118,14 +117,14 @@ if game.PlaceId == 6593190090 then
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
                     
-                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.ATK) --ATK can change to RNG, ElemntPower or Tamer
+                GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
                     
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
             end
                     
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.ATK)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
             wait(1)
         end
     end)
