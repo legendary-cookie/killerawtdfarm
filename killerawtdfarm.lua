@@ -95,6 +95,7 @@ if game.PlaceId == 6593190090 then
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
+            wait(3)
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -107,7 +108,6 @@ if game.PlaceId == 6593190090 then
             end
                 
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
-            wait(3)
         end
     end)
 
