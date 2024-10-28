@@ -1,7 +1,7 @@
 repeat wait() until game:IsLoaded()
 wait(5)
 getgenv().AutoPlaceUnit = true
-getgenv().AutoSkip = true
+getgenv().AutoSkip = false
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgradeP1 = true
@@ -78,14 +78,4 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    spawn(function()
-        while getgenv().AutoUpgrade == true do
-            wait(1)
-            local args = {
-                [1] = workspace.Units.Killer
-            }
-            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-            wait(1)
-        end
-    end)
 end
