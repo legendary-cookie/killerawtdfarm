@@ -100,10 +100,15 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if settings.AutoPlaceUnit then
             local args = {
-                "Killer",
-                CFrame.new(x, y, z) * CFrame.Angles(0, 0, 0),
-                1,
-                { "1", "1", "1", "1" }
+                [1] = "Killer",
+                [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
+                [3] = 1,
+                [4] = {
+                    [1] = "1",
+                    [2] = "1",
+                    [3] = "1",
+                    [4] = "1"
+                }
             }
             game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
         end
