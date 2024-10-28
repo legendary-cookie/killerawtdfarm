@@ -145,7 +145,7 @@ if game.PlaceId == 6593190090 then
             end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
-            wait(2)
+            wait(5)
         end
     end)
 
