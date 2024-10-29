@@ -110,31 +110,17 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-spawn(function()
-    while getgenv().BuffPicker == true do
-        local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
-        local buffInterface = playerGui:FindFirstChild("BuffInterFace")
-        
-        if buffInterface and buffInterface.Visible then
-            local buffSelection = buffInterface:FindFirstChild("BuffSelection")
-            if buffSelection and buffSelection.Visible then
-                local skillPoint = buffSelection:FindFirstChild("SkillPoint")
-                
-                if skillPoint and tonumber(skillPoint.Text) > 0 then
-                    local atk = buffSelection.List:FindFirstChild("ATK")
-                    if atk then
-                        local pickButton = atk:FindFirstChild("Pick")
-                        if pickButton and pickButton.Visible then
-                            clickUI(pickButton) -- Click the "Pick" button
-                        end
-                    end
+    spawn(function()
+        while getgenv().BuffPicker == true do
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
+                if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    wait()
                 end
             end
         end
-        
-        wait(1) -- Optional: Wait before the next iteration to prevent rapid checks
-    end
-end)
+    end)
+
 
     --auto replay
     spawn(function()
