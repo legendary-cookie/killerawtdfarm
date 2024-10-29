@@ -118,7 +118,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
             wait(2)
         end
     end)
