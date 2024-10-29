@@ -10,7 +10,7 @@ getgenv().AutoUpgrade = false
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
-getgenv().AutoFeed = true
+getgenv().AutoFeed = false
 getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
@@ -99,10 +99,10 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoBuyFood == true then
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Click)
-                while game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.visible do
-                wait(20)
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
-            end
+                while game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Visible do
+                    wait(20)
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+                end
         end
     end)
 
@@ -117,9 +117,10 @@ if game.PlaceId == 6593190090 then
     --auto bUff picker
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.visible then
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-                wait(1)
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
+                if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                end
             end
         end
     end)
@@ -127,7 +128,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.visible then
+            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
