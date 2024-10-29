@@ -131,7 +131,7 @@ end)
 -- Auto Buff Picker, waits until BuffInterface and its children are available
 spawn(function()
     while getgenv().AutoBuffPicker == true do
-        if SkillPoint and tonumber(SkillPoint.Text) >= 1 then
+        if SkillPoint and tonumber(SkillPoint.Text) > 1 then
             wait(1)
             clickUI(buffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
         end
