@@ -23,7 +23,25 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-local skillPointText = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.SkillPoint.Text
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local buffInterface = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)  -- waits up to 10 seconds
+
+if buffInterface then
+    local buffSelection = buffInterface:FindFirstChild("BuffSelection") or buffInterface:WaitForChild("BuffSelection", 10)
+    if buffSelection then
+        local skillPoint = buffSelection:FindFirstChild("SkillPoint") or buffSelection:WaitForChild("SkillPoint", 10)
+        if skillPoint then
+            local skillPointText = skillPoint.Text
+            print("Skill Point Text:", skillPointText)
+        else
+            warn("SkillPoint was not found.")
+        end
+    else
+        warn("BuffSelection was not found.")
+    end
+else
+    warn("BuffInterFace was not found.")
+end
 
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
