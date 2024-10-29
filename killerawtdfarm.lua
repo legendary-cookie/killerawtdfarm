@@ -86,7 +86,6 @@ if game.PlaceId == 6593190090 then
     --auto first skip/start game
     spawn(function()
         if getgenv().AutoFirstSkip == true then
-            wait(1)
             game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
         end
     end)
@@ -102,14 +101,14 @@ if game.PlaceId == 6593190090 then
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
-            wait(4)    
+            wait(4)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
         end
     end)
 
     --auto bUff picker
     spawn(function()
-        while getgenv().BuffPicker == true do
+        while getgenv().AutoBuffPicker == true do
             wait(3)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
         end
@@ -118,8 +117,8 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
             wait(2)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
         end
     end)
 
@@ -133,7 +132,6 @@ if game.PlaceId == 6593190090 then
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
             wait(10)
-
             local args = {
                 [1] = workspace.Units.Killer
             }
@@ -149,7 +147,6 @@ if game.PlaceId == 6593190090 then
                 [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-            wait(1)
         end
     end)
 
