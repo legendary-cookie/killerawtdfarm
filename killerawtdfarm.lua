@@ -118,10 +118,11 @@ spawn(function()
         if buffInterface and buffInterface.Visible then
             local buffSelection = buffInterface:FindFirstChild("BuffSelection")
             if buffSelection and buffSelection.Visible then
-                local list = buffSelection:FindFirstChild("List")
-                if list and list.Visible then
-                    local atk = list:FindFirstChild("ATK")
-                    if atk and atk.Visible then
+                local skillPoint = buffSelection:FindFirstChild("SkillPoint")
+                
+                if skillPoint and tonumber(skillPoint.Text) > 0 then
+                    local atk = buffSelection.List:FindFirstChild("ATK")
+                    if atk then
                         local pickButton = atk:FindFirstChild("Pick")
                         if pickButton and pickButton.Visible then
                             clickUI(pickButton) -- Click the "Pick" button
@@ -131,11 +132,9 @@ spawn(function()
             end
         end
         
-        wait(1) -- Optional: wait before the next check to avoid rapid firing
+        wait(1) -- Optional: Wait before the next iteration to prevent rapid checks
     end
 end)
-
-
 
     --auto replay
     spawn(function()
