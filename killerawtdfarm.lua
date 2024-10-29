@@ -1,4 +1,5 @@
 repeat wait() until game:IsLoaded()
+wait(3)
 
 --settings
 getgenv().AutoPlaceUnit = true
