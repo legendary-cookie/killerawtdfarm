@@ -111,29 +111,10 @@ if game.PlaceId == 6593190090 then
     end)
 
     spawn(function()
-        while not BuffInterFace do
-            BuffInterFace = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)
-            wait(1)  -- Check every second
-        end
-
-        buffSelection = BuffInterFace:FindFirstChild("BuffSelection") or BuffInterface:WaitForChild("BuffSelection", 10)
-        if BuffSelection then
-            SkillPoint = BuffSelection:FindFirstChild("SkillPoint") or BuffSelection:WaitForChild("SkillPoint", 10)
-        end
-    end)
-
-    -- Continually check for BuffInterFace in a separate thread
-    local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    local BuffInterFace, BuffSelection, SkillPoint
-    
-    -- Auto Buff Picker, waits until BuffInterface and its children are available
-    spawn(function()
-        while getgenv().AutoBuffPicker == true do
-            if SkillPoint and tonumber(SkillPoint.Text) > 0 then
-                wait(1)
-                clickUI(BuffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
+        while getgenv().BuffPicker == true do
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
             end
-            wait(1)  -- Retry every second
         end
     end)
 
