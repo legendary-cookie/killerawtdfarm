@@ -5,28 +5,18 @@ wait(5)
 getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
-getgenv().AutoUpgrade = true
+getgenv().AutoUpgrade2x = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
 getgenv().AutoFeed = true
-getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-function clickUI(gui)
-    local GuiService = game:GetService("GuiService")
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-
-    GuiService.SelectedObject = gui
-
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-    task.wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-end
+local click = loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/realclick-obf.lua"))()
 
 --auto join in lobby
 if game.PlaceId == 6558526079 then
@@ -46,7 +36,7 @@ if game.PlaceId == 6558526079 then
             
             wait(1)
             
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
+            click(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
         end
     end)
 
@@ -93,9 +83,8 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         if getgenv().AutoBuyFood == true then
-                    wait(20)
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
-                end
+            wait(25)
+            click(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
 
@@ -103,24 +92,31 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(6)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
+            click(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
         end
     end)
+
 
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
             if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+                click(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
         end
     end)
 
-    --spam upgrade of selected unit
+    --upgrade unit for each local args set
     spawn(function()
-        while getgenv().AutoUpgrade == true do
-            wait(1)
+        if getgenv().AutoUpgrade2x == true then
+            wait(15)
+            local args = {
+                [1] = workspace.Units.Denis
+            }
+            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
+
+            wait(10)
             local args = {
                 [1] = workspace.Units.Denis
             }
