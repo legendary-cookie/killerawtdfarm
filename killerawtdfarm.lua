@@ -1,7 +1,6 @@
 repeat wait() until game:IsLoaded()
-wait(3)
 
---auto tp, replay and play
+--settings
 getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
@@ -66,13 +65,6 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --auto first skip/start game
-    spawn(function()
-        if getgenv().AutoFirstSkip == true then
-            game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
-        end
-    end)
-
     --auto place unit of choice on your cords(can be changed if you know the x, y and z)
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
@@ -88,6 +80,14 @@ if game.PlaceId == 6593190090 then
                 }
             }
             game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
+        end
+    end)
+
+    --auto first skip/start game
+    spawn(function()
+        if getgenv().AutoFirstSkip == true then
+            wait(1)
+            game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
         end
     end)
 
