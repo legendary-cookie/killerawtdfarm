@@ -9,7 +9,7 @@ getgenv().AutoUpgrade2x = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
-getgenv().AutoFeed = false
+getgenv().AutoFeed = true
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
@@ -17,6 +17,39 @@ local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
 function clickUI(gui)
+    local GuiService = game:GetService("GuiService")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    GuiService.SelectedObject = gui
+
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+end
+
+function clickUI1(gui)
+    local GuiService = game:GetService("GuiService")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    GuiService.SelectedObject = gui
+
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+end
+
+function clickUI2(gui)
+    local GuiService = game:GetService("GuiService")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    GuiService.SelectedObject = gui
+
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+end
+
+function clickUI3(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
 
@@ -92,8 +125,8 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         if getgenv().AutoBuyFood == true then
-            wait(15)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            wait(20)
+            clickUI1(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
 
@@ -101,7 +134,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(6)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
+            clickUI2(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
         end
     end)
 
@@ -110,7 +143,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoReplay == true do
             if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+                clickUI3(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
         end
