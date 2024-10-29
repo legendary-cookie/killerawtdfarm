@@ -72,10 +72,27 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
+    --auto place unit of choice on your cords(can be changed if you know the x, y and z)
+    spawn(function()
+        if getgenv().AutoPlaceUnit == true then
+            local args = {
+                [1] = "Killer",
+                [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
+                [3] = 1,
+                [4] = {
+                    [1] = "1",
+                    [2] = "1",
+                    [3] = "1",
+                    [4] = "1"
+                }
+            }
+            game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
+        end
+    end)
+
     --auto Buy Food
     spawn(function()
         while getgenv().AutoBuyFood == true do
-            wait(20)
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -86,7 +103,7 @@ if game.PlaceId == 6593190090 then
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
             end
-            
+            wait(20)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
@@ -94,7 +111,6 @@ if game.PlaceId == 6593190090 then
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
-            wait(4)
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -105,7 +121,8 @@ if game.PlaceId == 6593190090 then
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
             end
-                
+
+            wait(4)    
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
         end
     end)
@@ -123,9 +140,9 @@ if game.PlaceId == 6593190090 then
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
             end
-                    
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+            
             wait(3)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
         end
     end)
 
@@ -145,24 +162,6 @@ if game.PlaceId == 6593190090 then
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
             wait(2)
-        end
-    end)
-
-    --auto place unit of choice on your cords(can be changed if you know the x, y and z)
-    spawn(function()
-        if getgenv().AutoPlaceUnit == true then
-            local args = {
-                [1] = "Killer",
-                [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
-                [3] = 1,
-                [4] = {
-                    [1] = "1",
-                    [2] = "1",
-                    [3] = "1",
-                    [4] = "1"
-                }
-            }
-            game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
         end
     end)
 
