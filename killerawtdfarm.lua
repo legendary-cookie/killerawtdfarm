@@ -9,7 +9,7 @@ getgenv().AutoUpgrade2x = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
-getgenv().AutoFeed = true
+getgenv().AutoFeed = false
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
@@ -92,8 +92,8 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         if getgenv().AutoBuyFood == true then
-                wait(15)
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            wait(15)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
 
