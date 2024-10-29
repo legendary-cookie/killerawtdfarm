@@ -18,11 +18,12 @@ local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
 function clickUI(gui)
-    local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
-
-    GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui)
-
+    
+    -- Focus on the specified GUI element
+    gui:CaptureFocus()
+    
+    -- Simulate pressing Enter
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
     task.wait(0.1)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
