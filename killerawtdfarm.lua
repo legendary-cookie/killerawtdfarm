@@ -9,7 +9,7 @@ getgenv().AutoUpgrade2x = true
 getgenv().AutoUpgrade = false
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
-getgenv().AutoBuyFood = false
+getgenv().AutoBuyFood = true
 getgenv().AutoFeed = true
 getgenv().AutoBuffPicker = true
 
