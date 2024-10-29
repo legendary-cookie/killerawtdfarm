@@ -94,7 +94,7 @@ if game.PlaceId == 6593190090 then
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
-            wait(3)
+            wait(4)
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -125,7 +125,7 @@ if game.PlaceId == 6593190090 then
             end
                     
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-            wait(1)
+            wait(3)
         end
     end)
 
@@ -144,7 +144,7 @@ if game.PlaceId == 6593190090 then
             end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
-            wait(5)
+            wait(4)
         end
     end)
 
