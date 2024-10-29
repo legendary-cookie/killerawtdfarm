@@ -39,7 +39,7 @@ if game.PlaceId == 6558526079 then
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
             
-                GuiService.SelectedObject = (gui)
+                GuiService.SelectedObject = gui
             
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
@@ -80,7 +80,7 @@ if game.PlaceId == 6593190090 then
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
             
-                GuiService.SelectedObject = (gui)
+                GuiService.SelectedObject = gui
             
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
@@ -98,9 +98,9 @@ if game.PlaceId == 6593190090 then
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
-                
-                GuiService.SelectedObject = (gui)
-                
+            
+                GuiService.SelectedObject = gui
+            
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
@@ -116,9 +116,9 @@ if game.PlaceId == 6593190090 then
             function clickUI(gui)
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
-                    
-                GuiService.SelectedObject = (gui)
-                    
+            
+                GuiService.SelectedObject = gui
+            
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
@@ -136,7 +136,7 @@ if game.PlaceId == 6593190090 then
                 local GuiService = game:GetService("GuiService")
                 local VirtualInputManager = game:GetService("VirtualInputManager")
             
-                GuiService.SelectedObject = (gui)
+                GuiService.SelectedObject = gui
             
                 VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
                 task.wait(0.1)
@@ -144,7 +144,7 @@ if game.PlaceId == 6593190090 then
             end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
-            wait(4)
+            wait(2)
         end
     end)
 
