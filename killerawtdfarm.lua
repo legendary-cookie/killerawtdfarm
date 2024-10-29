@@ -7,10 +7,10 @@ getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgrade2x = true
 getgenv().AutoUpgrade = false
-getgenv().AutoReplay = false
+getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
-getgenv().AutoBuyFood = false
-getgenv().AutoFeed = false
+getgenv().AutoBuyFood = true
+getgenv().AutoFeed = true
 getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
@@ -19,6 +19,8 @@ local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
 -- Continually check for BuffInterFace in a separate thread
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local buffInterface, buffSelection, skillPoint
 
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
@@ -95,52 +97,40 @@ if game.PlaceId == 6593190090 then
 
     --auto Buy Food
     spawn(function()
-        while getgenv().AutoBuyFood == true do
-            wait(20)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+        if getgenv().AutoBuyFood == true then
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Click)
+                while game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.visible do
+                wait(20)
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            end
         end
     end)
 
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
-            wait(5)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
+            wait(6)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
         end
     end)
 
+    --auto bUff picker
     spawn(function()
-        while not BuffInterFace do
-            BuffInterFace = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)
-            wait(1)  -- Check every second
-        end
-
-        buffSelection = BuffInterFace:FindFirstChild("BuffSelection") or BuffInterface:WaitForChild("BuffSelection", 10)
-        if BuffSelection then
-            SkillPoint = BuffSelection:FindFirstChild("SkillPoint") or BuffSelection:WaitForChild("SkillPoint", 10)
-        end
-    end)
-
-    -- Continually check for BuffInterFace in a separate thread
-    local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    local BuffInterFace, BuffSelection, SkillPoint
-    
-    -- Auto Buff Picker, waits until BuffInterface and its children are available
-    spawn(function()
-        while getgenv().AutoBuffPicker == true do
-            if SkillPoint and tonumber(SkillPoint.Text) > 0 then
+        while getgenv().BuffPicker == true do
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.visible then
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
                 wait(1)
-                clickUI(BuffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
             end
-            wait(1)  -- Retry every second
         end
     end)
 
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            wait(3)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.visible then
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+                wait(1)
+            end
         end
     end)
 
