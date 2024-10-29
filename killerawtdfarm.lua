@@ -23,6 +23,9 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
+local skillPointText = game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text
+
+
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -115,8 +118,10 @@ if game.PlaceId == 6593190090 then
     --auto bUff picker
     spawn(function()
         while getgenv().AutoBuffPicker == true do
-            wait(1)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+            if skillPointText >= 1 then
+                wait(1)
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+            end
         end
     end)
 
