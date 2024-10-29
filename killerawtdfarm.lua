@@ -16,7 +16,16 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-local click = loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/realclick-obf.lua"))()
+function clickUI(gui)
+    local GuiService = game:GetService("GuiService")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    GuiService.SelectedObject = gui
+
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+end
 
 --auto join in lobby
 if game.PlaceId == 6558526079 then
@@ -36,7 +45,7 @@ if game.PlaceId == 6558526079 then
             
             wait(1)
             
-            click(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
         end
     end)
 
@@ -83,8 +92,11 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         if getgenv().AutoBuyFood == true then
-            wait(25)
-            click(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Click)
+                while game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Visible do
+                    wait(25)
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+                end
         end
     end)
 
@@ -92,7 +104,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(6)
-            click(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
         end
     end)
 
@@ -101,7 +113,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoReplay == true do
             if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
-                click(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
         end
