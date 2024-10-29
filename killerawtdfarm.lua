@@ -17,14 +17,6 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-function clickUI(gui)
-    if gui and gui:IsA("GuiButton") then
-        gui:MouseButton1Click()  -- This simulates a click on the button
-    else
-        warn("Invalid GUI element or not a button.")
-    end
-end
-
 --auto join in lobby
 if game.PlaceId == 6558526079 then
 
@@ -42,6 +34,17 @@ if game.PlaceId == 6558526079 then
             game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
             
             wait(1)
+            
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+            
+                GuiService.SelectedObject = (gui)
+            
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
         end
@@ -73,6 +76,17 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoBuyFood == true do
             wait(20)
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+            
+                GuiService.SelectedObject = (gui)
+            
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+            
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
@@ -81,13 +95,35 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(3)
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+                
+                GuiService.SelectedObject = (gui)
+                
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+                
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
         end
     end)
 
     --auto bUff picker
     spawn(function()
-        while getgenv().BuffPicker == true do    
+        while getgenv().BuffPicker == true do
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+                    
+                GuiService.SelectedObject = (gui)
+                    
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+                    
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
             wait(1)
         end
@@ -96,6 +132,17 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
+            function clickUI(gui)
+                local GuiService = game:GetService("GuiService")
+                local VirtualInputManager = game:GetService("VirtualInputManager")
+            
+                GuiService.SelectedObject = (gui)
+            
+                VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
+                task.wait(0.1)
+                VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
+            end
+            
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
             wait(5)
         end
