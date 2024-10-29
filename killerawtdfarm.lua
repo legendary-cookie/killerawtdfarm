@@ -9,8 +9,8 @@ getgenv().AutoUpgrade2x = true
 getgenv().AutoUpgrade = false
 getgenv().AutoReplay = false
 getgenv().AutoJoinGame = true
-getgenv().AutoBuyFood = false
-getgenv().AutoFeed = false
+getgenv().AutoBuyFood = true
+getgenv().AutoFeed = true
 getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
@@ -19,8 +19,6 @@ local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
 -- Continually check for BuffInterFace in a separate thread
-local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-local buffInterface, buffSelection, skillPoint
 
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
@@ -112,23 +110,27 @@ if game.PlaceId == 6593190090 then
     end)
 
     spawn(function()
-        while not buffInterface do
-            buffInterface = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)
+        while not BuffInterFace do
+            BuffInterFace = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)
             wait(1)  -- Check every second
         end
 
-        buffSelection = buffInterface:FindFirstChild("BuffSelection") or buffInterface:WaitForChild("BuffSelection", 10)
-        if buffSelection then
-            skillPoint = buffSelection:FindFirstChild("SkillPoint") or buffSelection:WaitForChild("SkillPoint", 10)
+        buffSelection = BuffInterFace:FindFirstChild("BuffSelection") or BuffInterface:WaitForChild("BuffSelection", 10)
+        if BuffSelection then
+            SkillPoint = BuffSelection:FindFirstChild("SkillPoint") or BuffSelection:WaitForChild("SkillPoint", 10)
         end
     end)
 
+    -- Continually check for BuffInterFace in a separate thread
+    local PlayerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    local BuffInterFace, BuffSelection, SkillPoint
+    
     -- Auto Buff Picker, waits until BuffInterface and its children are available
     spawn(function()
         while getgenv().AutoBuffPicker == true do
-            if SkillPoint and tonumber(SkillPoint.Text) > 1 then
+            if SkillPoint and tonumber(SkillPoint.Text) > 0 then
                 wait(1)
-                clickUI(buffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
+                clickUI(BuffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
             end
             wait(1)  -- Retry every second
         end
