@@ -117,7 +117,7 @@ if game.PlaceId == 6593190090 then
     --auto bUff picker
     spawn(function()
         while getgenv().BuffPicker do
-            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.BuffSelection.Visible then
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.BuffSelection.List.Visible then
                 local skillPointText = game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint
                 if skillPointText and tonumber(skillPointText.Text) > 0 then
                     local buffType = "ATK"  -- You can change this dynamically as needed
