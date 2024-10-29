@@ -1,131 +1,155 @@
 repeat wait() until game:IsLoaded()
 
--- Auto settings
-local settings = {
-    AutoPlaceUnit = true,
-    AutoFirstSkip = true,
-    Auto3xSpeed = true,
-    AutoUpgrade2x = true,
-    AutoUpgrade = false,
-    AutoReplay = true,
-    AutoJoinGame = true,
-    AutoBuyFood = true,
-    AutoFeed = true,
-    AutoBuffPicker = true
-}
+--auto tp, replay and play
+getgenv().AutoPlaceUnit = true
+getgenv().AutoFirstSkip = true
+getgenv().Auto3xSpeed = true
+getgenv().AutoUpgrade2x = true
+getgenv().AutoUpgrade = false
+getgenv().AutoReplay = true
+getgenv().AutoJoinGame = true
+getgenv().AutoBuyFood = true
+getgenv().AutoFeed = true
+getgenv().AutoBuffPicker = true
 
--- Get current coordinates for unit placement
-local player = game.Players.LocalPlayer
-local x, y, z = player.Character.Torso.Position.x, player.Character.Torso.Position.y, player.Character.Torso.Position.z
+--get currunt cords to place unit on urself
+local x = game.Players.LocalPlayer.Character.Torso.Position.x
+local y = game.Players.LocalPlayer.Character.Torso.Position.y
+local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
--- Function to handle UI clicks
-local function clickUI(guiPath)
+function clickUI(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
-    GuiService.SelectedObject = guiPath
+
+    GuiService.SelectedObject = (game:GetService("Players").LocalPlayer.PlayerGui)
+
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
     task.wait(0.1)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
 end
 
--- Auto join lobby
+--auto join in lobby
 if game.PlaceId == 6558526079 then
+
     spawn(function()
-        if settings.AutoJoinGame then
+        if getgenv().AutoJoinGame == true then 
             local args = {
                 [1] = {
-                    StageSelect = "Evil Pink Dungeon",
-                    Image = "rbxassetid://15289588795",
-                    FriendOnly = true,
-                    Difficult = "Nightmare"
+                    ["StageSelect"] = "Evil Pink Dungeon",
+                    ["Image"] = "rbxassetid://15289588795",
+                    ["FriendOnly"] = true,
+                    ["Difficult"] = "Nightmare"
                 }
             }
+            
             game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
+            
             wait(1)
-            clickUI(player.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
+            
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
         end
     end)
+
 end
 
--- In-game auto actions
+--auto place, upgrade, replay, speedup, start
 if game.PlaceId == 6593190090 then
-    -- Auto speed
+
+    --auto 3x(can be changed to 2x by changing x2 to x1 below)
     spawn(function()
-        if settings.Auto3xSpeed then
-            local args = { "x2 Speed" }
+        if getgenv().Auto3xSpeed == true then
+            local args = {
+                [1] = "x2 Speed"
+            }
             game:GetService("ReplicatedStorage").Remote.x2Event:FireServer(unpack(args))
         end
     end)
 
-    -- Auto first skip
+    --auto first skip/start game
     spawn(function()
-        if settings.AutoFirstSkip then
+        if getgenv().AutoFirstSkip == true then
             game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
         end
     end)
 
-    -- Auto Buy Food
+    --auto Buy Food
     spawn(function()
-        while settings.AutoBuyFood do
+        while getgenv().AutoBuyFood == true do
             wait(20)
-            clickUI(player.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
 
-    -- Auto Feed
+    --auto Feed
     spawn(function()
-        while settings.AutoFeed do
+        while getgenv().AutoFeed == true do
             wait(3)
-            clickUI(player.PlayerGui.InterFace.Selection.FeedAll)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
         end
     end)
 
-    -- Auto Buff Picker
+    --auto bUff picker
     spawn(function()
-        while settings.AutoBuffPicker do
-            clickUI(player.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) -- Adjust for different buffs as needed
+        while getgenv().BuffPicker == true do    
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
             wait(1)
         end
     end)
 
-    -- Auto Replay
+    --auto replay
     spawn(function()
-        while settings.AutoReplay do
-            clickUI(player.PlayerGui.EndUI.UI.Replay)
+        while getgenv().AutoReplay == true do
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.ReplayS)
             wait(5)
         end
     end)
 
-    -- Auto place unit at saved coordinates
+    --auto place unit of choice on your cords(can be changed if you know the x, y and z)
     spawn(function()
-        if settings.AutoPlaceUnit then
+        if getgenv().AutoPlaceUnit == true then
             local args = {
-                "Killer",
-                CFrame.new(x, y, z) * CFrame.Angles(0, 0, 0),
-                1,
-                { "1", "1", "1", "1" }
+                [1] = "Killer",
+                [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
+                [3] = 1,
+                [4] = {
+                    [1] = "1",
+                    [2] = "1",
+                    [3] = "1",
+                    [4] = "1"
+                }
             }
             game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
         end
     end)
 
-    -- Auto Upgrade (2x)
+    --upgrade unit for each local args set
     spawn(function()
-        if settings.AutoUpgrade2x then
+        if getgenv().AutoUpgrade2x == true then
             wait(15)
-            local args = { workspace.Units.Killer }
+            local args = {
+                [1] = workspace.Units.Killer
+            }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
+
             wait(10)
+
+            local args = {
+                [1] = workspace.Units.Killer
+            }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
     end)
 
-    -- Spam upgrade unit
+    --spam upgrade of selected unit
     spawn(function()
-        while settings.AutoUpgrade do
+        while getgenv().AutoUpgrade == true do
             wait(1)
-            local args = { workspace.Units.Killer }
+            local args = {
+                [1] = workspace.Units.Killer
+            }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
+            wait(1)
         end
     end)
+
 end
