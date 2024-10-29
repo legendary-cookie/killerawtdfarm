@@ -1,4 +1,5 @@
 repeat wait() until game:IsLoaded()
+wait(3)
 
 --auto tp, replay and play
 getgenv().AutoPlaceUnit = true
