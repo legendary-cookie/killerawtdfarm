@@ -119,7 +119,6 @@ if game.PlaceId == 6593190090 then
             if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
                     wait(5)
-                end
             end
         end
     end)
