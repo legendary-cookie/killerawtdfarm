@@ -102,7 +102,7 @@ if game.PlaceId == 6593190090 then
     --auto Feed
     spawn(function()
         while getgenv().AutoFeed == true do
-            wait(4)
+            wait(5)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Selection.FeedAll)
         end
     end)
@@ -110,7 +110,7 @@ if game.PlaceId == 6593190090 then
     --auto bUff picker
     spawn(function()
         while getgenv().AutoBuffPicker == true do
-            wait(3)
+            wait(1)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
         end
     end)
@@ -118,7 +118,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            wait(2)
+            wait(3)
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
         end
     end)
