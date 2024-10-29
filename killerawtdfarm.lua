@@ -23,8 +23,6 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-local skillPointText = game:GetService("Players").LocalPlayer.PlayerGui:FIndFirstChild("BuffInterFace").BuffSelection.SkillPoint.Text
-
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -114,15 +112,35 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --auto bUff picker
-    spawn(function()
-        while getgenv().AutoBuffPicker == true do
-            if skillPointText >= 1 then
-                wait(1)
-                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-            end
+-- Continually check for BuffInterFace in a separate thread
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local buffInterface, buffSelection, skillPoint
+
+spawn(function()
+    while not buffInterface do
+        buffInterface = playerGui:FindFirstChild("BuffInterFace") or playerGui:WaitForChild("BuffInterFace", 10)
+        wait(1)  -- Check every second
+    end
+
+    buffSelection = buffInterface:FindFirstChild("BuffSelection") or buffInterface:WaitForChild("BuffSelection", 10)
+    if buffSelection then
+        skillPoint = buffSelection:FindFirstChild("SkillPoint") or buffSelection:WaitForChild("SkillPoint", 10)
+    end
+end)
+
+-- Auto Buff Picker, waits until BuffInterface and its children are available
+spawn(function()
+    while getgenv().AutoBuffPicker == true do
+        if skillPoint and tonumber(skillPoint.Text) >= 1 then
+            wait(1)
+            clickUI(buffSelection.List.ATK.Pick) -- ATK can change to RNG, ElementPower, or Tamer
         end
-    end)
+        wait(1)  -- Retry every second
+    end
+end)
+
+-- The rest of your original script here...
+
 
     --auto replay
     spawn(function()
