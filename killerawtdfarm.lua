@@ -114,17 +114,13 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --auto bUff picker
     spawn(function()
-        while getgenv().BuffPicker do
-            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.BuffSelection.List.Visible then
-                local skillPointText = game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint
-                if skillPointText and tonumber(skillPointText.Text) > 0 then
-                    local buffType = "ATK"  -- You can change this dynamically as needed
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List[buffType].Pick)
+        while getgenv().BuffPicker == true do
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    wait(5)
                 end
             end
-            wait(0.1)  -- Adding a small wait to reduce CPU usage
         end
     end)
 
