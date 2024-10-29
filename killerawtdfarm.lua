@@ -5,8 +5,7 @@ wait(5)
 getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
-getgenv().AutoUpgrade2x = true
-getgenv().AutoUpgrade = false
+getgenv().AutoUpgrade = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
@@ -70,7 +69,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Killer",
+                [1] = "Denis",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
@@ -110,18 +109,6 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    spawn(function()
-        while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
-                if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-                    wait()
-                end
-            end
-        end
-    end)
-
-
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
@@ -132,29 +119,12 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --upgrade unit for each local args set
-    spawn(function()
-        if getgenv().AutoUpgrade2x == true then
-            wait(15)
-            local args = {
-                [1] = workspace.Units.Killer
-            }
-            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-
-            wait(10)
-            local args = {
-                [1] = workspace.Units.Killer
-            }
-            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-        end
-    end)
-
     --spam upgrade of selected unit
     spawn(function()
         while getgenv().AutoUpgrade == true do
             wait(1)
             local args = {
-                [1] = workspace.Units.Killer
+                [1] = workspace.Units.Denis
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
