@@ -110,9 +110,9 @@ if game.PlaceId == 6593190090 then
     --auto buff picker
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
-                    wait()
+            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible == true then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    wait(1)
             end
         end
     end)
@@ -120,7 +120,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Gold_Val or tonumber(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Gold_Val.Text) > 0 then
+            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay.Key.Visible == true then
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
