@@ -17,6 +17,10 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
+local guiElement = game.Players.LocalPlayer.PlayerGui.EndUI.UI
+local yGui = guiElement.Position.Y
+
+
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -108,22 +112,11 @@ if game.PlaceId == 6593190090 then
     end)
 
     --auto buff picker
-    -- spawn(function()
-    --     while getgenv().BuffPicker == true do
-    --         if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
-    --                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-    --                 wait(1)
-    --         end
-    --     end
-    -- end)
-
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
-                if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
+            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-                    wait()
-                end
+                    wait(1)
             end
         end
     end)
@@ -131,7 +124,10 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay.Key.Visible then
+            guiElementN = game.Players.LocalPlayer.PlayerGui.EndUI.UI
+            yGuiN = guiElement.Position.Y
+            wait(5)
+            if yGui ~= yGuiN then
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
