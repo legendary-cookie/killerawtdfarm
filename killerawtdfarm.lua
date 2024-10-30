@@ -114,8 +114,8 @@ if game.PlaceId == 6593190090 then
     --auto buff picker
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace", 2) then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
                     wait(1)
             end
         end
@@ -126,7 +126,7 @@ if game.PlaceId == 6593190090 then
         while getgenv().AutoReplay == true do
             guiElementN = game.Players.LocalPlayer.PlayerGui.EndUI.UI
             yGuiN = guiElement.Position.Y
-            wait(3)
+            wait(1)
             if yGui ~= yGuiN then
                 wait(2)
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
@@ -137,13 +137,13 @@ if game.PlaceId == 6593190090 then
     --upgrade unit for each local args set
     spawn(function()
         if getgenv().AutoUpgrade2x == true then
-            wait(15)
+            wait(20)
             local args = {
                 [1] = workspace.Units.Denis
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
-            wait(10)
+            wait(15)
             local args = {
                 [1] = workspace.Units.Denis
             }
