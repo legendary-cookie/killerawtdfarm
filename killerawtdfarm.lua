@@ -108,11 +108,22 @@ if game.PlaceId == 6593190090 then
     end)
 
     --auto buff picker
+    -- spawn(function()
+    --     while getgenv().BuffPicker == true do
+    --         if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
+    --                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+    --                 wait(1)
+    --         end
+    --     end
+    -- end)
+
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
+            if game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.Visible then
+                if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
-                    wait(1)
+                    wait()
+                end
             end
         end
     end)
