@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(5)
+wait(3)
 
 --settings
 getgenv().AutoPlaceUnit = true
@@ -110,7 +110,7 @@ if game.PlaceId == 6593190090 then
     --auto buff picker
     spawn(function()
         while getgenv().BuffPicker == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible == true then
+            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace").BuffSelection.Visible then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
                     wait(1)
             end
@@ -120,7 +120,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay.Key.Visible == true then
+            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay.Key.Visible then
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
