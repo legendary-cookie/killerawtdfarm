@@ -103,7 +103,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(6)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
+            game:GetService("ReplicatedStorage").Remote.FeedAll:InvokeServer()
         end
     end)
 
@@ -111,10 +111,8 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().BuffPicker == true do
             if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace", 30).BuffSelection.Visible then
-                --if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
                     wait()
-                --end
             end
         end
     end)
@@ -122,7 +120,7 @@ if game.PlaceId == 6593190090 then
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
-            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
+            if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Gold_Val or tonumber(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Gold_Val.Text) > 0 then
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
