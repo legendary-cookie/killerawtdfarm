@@ -10,6 +10,7 @@ getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
 getgenv().AutoFeed = true
+getgenv().AutoBuffPicker = true
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
@@ -17,39 +18,6 @@ local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
 function clickUI(gui)
-    local GuiService = game:GetService("GuiService")
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-
-    GuiService.SelectedObject = gui
-
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-    task.wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-end
-
-function clickUI1(gui)
-    local GuiService = game:GetService("GuiService")
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-
-    GuiService.SelectedObject = gui
-
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-    task.wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-end
-
-function clickUI2(gui)
-    local GuiService = game:GetService("GuiService")
-    local VirtualInputManager = game:GetService("VirtualInputManager")
-
-    GuiService.SelectedObject = gui
-
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.Return, false, game)
-    task.wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.Return, false, game)
-end
-
-function clickUI3(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
 
@@ -101,7 +69,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Denis",
+                [1] = "Killer",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
@@ -115,18 +83,19 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --auto first skip/start game
+    --auto first & open buy menu
     spawn(function()
         if getgenv().AutoFirstSkip == true then
             game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Click)
         end
     end)
 
     --auto Buy Food
     spawn(function()
-        if getgenv().AutoBuyFood == true then
+        while (getgenv().AutoBuyFood == true and game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Visible) do
             wait(20)
-            clickUI1(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
         end
     end)
 
@@ -134,16 +103,27 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().AutoFeed == true do
             wait(6)
-            clickUI2(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
+            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.Feed_All.Click)
         end
     end)
 
+    --auto buff picker
+    spawn(function()
+        while getgenv().BuffPicker == true do
+            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace", 30).BuffSelection.Visible then
+                --if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    wait()
+                end
+            end
+        end
+    end)
 
     --auto replay
     spawn(function()
         while getgenv().AutoReplay == true do
             if game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Visible then
-                clickUI3(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
+                clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
                 wait(1)
             end
         end
@@ -154,13 +134,13 @@ if game.PlaceId == 6593190090 then
         if getgenv().AutoUpgrade2x == true then
             wait(15)
             local args = {
-                [1] = workspace.Units.Denis
+                [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
             wait(10)
             local args = {
-                [1] = workspace.Units.Denis
+                [1] = workspace.Units.Killer
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
