@@ -126,10 +126,10 @@ if game.PlaceId == 6593190090 then
         while getgenv().AutoReplay == true do
             guiElementN = game.Players.LocalPlayer.PlayerGui.EndUI.UI
             yGuiN = guiElement.Position.Y
-            wait(5)
+            wait(3)
             if yGui ~= yGuiN then
+                wait(2)
                 clickUI(game:GetService("Players").LocalPlayer.PlayerGui.EndUI.UI.Replay)
-                wait(1)
             end
         end
     end)
