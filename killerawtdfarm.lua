@@ -115,7 +115,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         while getgenv().BuffPicker == true do
             if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace", 2) then
-                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
+                    clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK) --ATK can change to RNG, ElemntPower or Tamer
                     wait(1)
             end
         end
