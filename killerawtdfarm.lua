@@ -6,7 +6,7 @@ getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
 getgenv().Auto3xSpeed = true
 getgenv().AutoUpgrade2x = true
-getgenv().AutoReplay = true
+getgenv().AutoReplay = false
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
 getgenv().AutoFeed = true
@@ -114,7 +114,7 @@ if game.PlaceId == 6593190090 then
                 --if (game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint) and tonumber(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.SkillPoint.Text) > 0 then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
                     wait()
-                end
+                --end
             end
         end
     end)
