@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(5)
+wait(3)
 
 --settings
 getgenv().AutoPlaceUnit = true
@@ -17,10 +17,6 @@ local x = game.Players.LocalPlayer.Character.Torso.Position.x
 local y = game.Players.LocalPlayer.Character.Torso.Position.y
 local z = game.Players.LocalPlayer.Character.Torso.Position.z
 
-local guiElement = game.Players.LocalPlayer.PlayerGui.EndUI.UI
-local yGui = guiElement.Position.Y
-
-
 function clickUI(gui)
     local GuiService = game:GetService("GuiService")
     local VirtualInputManager = game:GetService("VirtualInputManager")
@@ -37,7 +33,6 @@ if game.PlaceId == 6558526079 then
 
     spawn(function()
         if getgenv().AutoJoinGame == true then
-            wait(1)
             local args = {
                 [1] = {
                     ["StageSelect"] = "Evil Pink Dungeon",
@@ -59,6 +54,9 @@ end
 
 --auto place, upgrade, replay, speedup, start
 if game.PlaceId == 6593190090 then
+
+    local guiElement = game.Players.LocalPlayer.PlayerGui.EndUI.UI
+    local yGui = guiElement.Position.Y
 
     --auto 3x(can be changed to 2x by changing x2 to x1 below)
     spawn(function()
@@ -112,7 +110,7 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
-    --auto buff picker
+    --auto buff picker doesnt work
     spawn(function()
         while getgenv().BuffPicker == true do
             if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace") then
