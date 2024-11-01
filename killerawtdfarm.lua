@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded()
-wait(3)
+wait(5)
 
 --settings
 getgenv().AutoPlaceUnit = true
@@ -36,7 +36,8 @@ end
 if game.PlaceId == 6558526079 then
 
     spawn(function()
-        if getgenv().AutoJoinGame == true then 
+        if getgenv().AutoJoinGame == true then
+            wait(1)
             local args = {
                 [1] = {
                     ["StageSelect"] = "Evil Pink Dungeon",
