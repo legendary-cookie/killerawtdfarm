@@ -72,7 +72,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Denis",
+                [1] = "Reaper Girl Milla",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
@@ -138,13 +138,13 @@ if game.PlaceId == 6593190090 then
         if getgenv().AutoUpgrade2x == true then
             wait(20)
             local args = {
-                [1] = workspace.Units.Denis
+                [1] = workspace.Units.Reaper_Girl_Milla
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
             wait(15)
             local args = {
-                [1] = workspace.Units.Denis
+                [1] = workspace.Units.Reaper_Girl_Milla
             }
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
         end
