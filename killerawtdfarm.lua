@@ -34,17 +34,17 @@ if game.PlaceId == 6558526079 then
     spawn(function()
         if getgenv().AutoJoinGame == true then
             local args = {
-                [1] = {
-                    ["StageSelect"] = "Evil Pink Dungeon",
-                    ["Image"] = "rbxassetid://15289588795",
-                    ["FriendOnly"] = true,
-                    ["Difficult"] = "Nightmare"
-                }
-            }
+        [1] = {
+            ["StageSelect"] = "Ruin Society",
+            ["Image"] = "rbxassetid://14936293037",
+            ["FriendOnly"] = true,
+            ["Difficult"] = "Nightmare"
+        }
+    }
+
+    game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
             
-            game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
-            
-            wait(1)
+            wait(0.5)
             
             clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InRoomUi.RoomUI.QuickStart.TextButton)
         end
