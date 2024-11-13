@@ -135,20 +135,14 @@ if game.PlaceId == 6593190090 then
 
     --upgrade unit for each local args set
     spawn(function()
-        if getgenv().AutoUpgrade2x == true then
-            wait(20)
+        wait(20)
+        while getgenv().AutoUpgrade2x == true do
             local args = {
                 [1] = workspace.Units:FindFirstChild("Reaper Girl Milla")
             }
             
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-
-            wait(15)
-            local args = {
-                [1] = workspace.Units:FindFirstChild("Reaper Girl Milla")
-            }
-            
-            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
+            wait(1)
         end
     end)
 
