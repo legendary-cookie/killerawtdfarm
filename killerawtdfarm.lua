@@ -138,14 +138,14 @@ if game.PlaceId == 6593190090 then
         if getgenv().AutoUpgrade2x == true then
             wait(20)
             local args = {
-                [1] = workspace.Units:FindFirstChild("Reaper Gunslinger")
+                [1] = workspace.Units:FindFirstChild("Reaper Girl Milla")
             }
             
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
 
             wait(15)
             local args = {
-                [1] = workspace.Units:FindFirstChild("Reaper Gunslinger")
+                [1] = workspace.Units:FindFirstChild("Reaper Girl Milla")
             }
             
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
