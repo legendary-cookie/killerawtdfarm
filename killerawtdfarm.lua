@@ -72,7 +72,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Reaper Gunslinger",
+                [1] = "Reaper Girl Milla",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
