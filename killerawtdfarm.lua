@@ -72,7 +72,7 @@ if game.PlaceId == 6593190090 then
     spawn(function()
         if getgenv().AutoPlaceUnit == true then
             local args = {
-                [1] = "Reaper Gunslinger",
+                [1] = "Legendary Kroly",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
                 [3] = 1,
                 [4] = {
@@ -138,7 +138,7 @@ if game.PlaceId == 6593190090 then
         wait(20)
         while getgenv().AutoUpgrade2x == true do
             local args = {
-                [1] = workspace.Units:FindFirstChild("Reaper Gunslinger")
+                [1] = workspace.Units:FindFirstChild("Legendary Kroly")
             }
             
             game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
