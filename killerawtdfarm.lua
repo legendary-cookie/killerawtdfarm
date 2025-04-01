@@ -76,11 +76,22 @@ if game.PlaceId == 6593190090 then
         end
     end)
 
+    --upgrade unit for each local args set
+    spawn(function()
+        while getgenv().AutoUpgrade2x == true do
+            local args = {
+                [1] = workspace.Units:FindFirstChild("Legendary Kroly")
+            }
+            
+            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
+            wait(1)
+        end
+    end)
+
     --auto first & open buy menu
     spawn(function()
         if getgenv().AutoFirstSkip == true then
             game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Click)
         end
     end)
 
@@ -106,7 +117,7 @@ if game.PlaceId == 6593190090 then
 
     --auto buff picker doesnt work
     spawn(function()
-        while getgenv().BuffPicker == true do
+        while getgenv().AutoBuffPicker == true do
             if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("BuffInterFace") then
                     clickUI(game:GetService("Players").LocalPlayer.PlayerGui.BuffInterFace.BuffSelection.List.ATK.Pick) --ATK can change to RNG, ElemntPower or Tamer
                     wait(1)
@@ -126,17 +137,4 @@ if game.PlaceId == 6593190090 then
             end
         end
     end)
-
-    --upgrade unit for each local args set
-    spawn(function()
-        while getgenv().AutoUpgrade2x == true do
-            local args = {
-                [1] = workspace.Units:FindFirstChild("Legendary Kroly")
-            }
-            
-            game:GetService("ReplicatedStorage").Remote.UpgradeUnit:InvokeServer(unpack(args))
-            wait(1)
-        end
-    end)
-
 end
