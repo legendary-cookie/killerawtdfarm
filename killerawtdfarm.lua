@@ -4,7 +4,7 @@ wait(3)
 --settings
 getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
-getgenv().Auto3xSpeed = true
+getgenv().Auto3xSpeed = false
 getgenv().AutoUpgrade2x = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
