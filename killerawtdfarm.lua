@@ -128,7 +128,6 @@ if game.PlaceId == 6593190090 then
 
     --upgrade unit for each local args set
     spawn(function()
-        wait(20)
         while getgenv().AutoUpgrade2x == true do
             local args = {
                 [1] = workspace.Units:FindFirstChild("Legendary Kroly")
