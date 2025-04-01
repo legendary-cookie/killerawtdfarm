@@ -85,7 +85,7 @@ if game.PlaceId == 6593190090 then
 
     --auto Buy Food
     spawn(function()
-        while (getgenv().AutoBuyFood == true do
+        while getgenv().AutoBuyFood == true do
             wait(10)
             local args = {
                 [1] = 10
