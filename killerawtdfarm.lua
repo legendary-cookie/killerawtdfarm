@@ -34,15 +34,15 @@ if game.PlaceId == 6558526079 then
     spawn(function()
         if getgenv().AutoJoinGame == true then
             local args = {
-        [1] = {
-            ["StageSelect"] = "Ruin Society",
-            ["Image"] = "rbxassetid://14936293037",
-            ["FriendOnly"] = true,
-            ["Difficult"] = "Nightmare"
-        }
-    }
+                [1] = {
+                    ["StageSelect"] = "Fairy Camelot",
+                    ["Image"] = "rbxassetid://124277693193734",
+                    ["FriendOnly"] = true,
+                    ["Difficult"] = "Master"
+                }
+            }
 
-    game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
+            game:GetService("ReplicatedStorage").Remote.CreateRoom:FireServer(unpack(args))
             
             wait(0.5)
             
