@@ -9,6 +9,7 @@ getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
 getgenv().AutoFeed = true
 getgenv().AutoBuffPicker = true
+getgenv().AutoUpgrade2x = true
 
 --get currunt cords to place unit on urself
 local x = game.Players.LocalPlayer.Character.Torso.Position.x
