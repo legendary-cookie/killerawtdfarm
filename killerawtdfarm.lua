@@ -1,11 +1,9 @@
 repeat wait() until game:IsLoaded()
-wait(3)
+wait(1)
 
 --settings
 getgenv().AutoPlaceUnit = true
 getgenv().AutoFirstSkip = true
-getgenv().Auto3xSpeed = false
-getgenv().AutoUpgrade2x = true
 getgenv().AutoReplay = true
 getgenv().AutoJoinGame = true
 getgenv().AutoBuyFood = true
@@ -58,19 +56,9 @@ if game.PlaceId == 6593190090 then
     local guiElement = game.Players.LocalPlayer.PlayerGui.EndUI.UI
     local yGui = guiElement.Position.Y
 
-    --auto 3x(can be changed to 2x by changing x2 to x1 below)
-    spawn(function()
-        if getgenv().Auto3xSpeed == true then
-            local args = {
-                [1] = "x2 Speed"
-            }
-            game:GetService("ReplicatedStorage").Remote.x2Event:FireServer(unpack(args))
-        end
-    end)
-
     --auto place unit of choice on your cords(can be changed if you know the x, y and z)
     spawn(function()
-        if getgenv().AutoPlaceUnit == true then
+        while getgenv().AutoPlaceUnit == true do
             local args = {
                 [1] = "Legendary Kroly",
                 [2] = CFrame.new(x, y, z) * CFrame.Angles(-0, 0, -0),
@@ -83,6 +71,7 @@ if game.PlaceId == 6593190090 then
                 }
             }
             game:GetService("ReplicatedStorage").Remote.SpawnUnit:InvokeServer(unpack(args))
+            wait(1)
         end
     end)
 
@@ -97,8 +86,12 @@ if game.PlaceId == 6593190090 then
     --auto Buy Food
     spawn(function()
         while (getgenv().AutoBuyFood == true and game:GetService("Players").LocalPlayer.PlayerGui.InterFace.Equip.val.BuyMeat.Visible) do
-            wait(20)
-            clickUI(game:GetService("Players").LocalPlayer.PlayerGui.InterFace.BuyMeatMenu.Menu.Buy10)
+            wait(10)
+            local args = {
+                [1] = 10
+            }
+            
+            game:GetService("ReplicatedStorage").Remote.BuyMeat:InvokeServer(unpack(args))            
         end
     end)
 
