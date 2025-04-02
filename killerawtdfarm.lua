@@ -90,7 +90,7 @@ if game.PlaceId == 6593190090 then
 
     --auto first & open buy menu
     spawn(function()
-        if getgenv().AutoFirstSkip == true then
+        while getgenv().AutoFirstSkip == true do
             game:GetService("ReplicatedStorage").Remote.SkipEvent:FireServer()
         end
     end)
